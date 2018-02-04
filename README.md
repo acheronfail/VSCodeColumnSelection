@@ -25,6 +25,19 @@ Place one cursors anywhere, and then <kbd>shift</kbd> + <kbd>alt</kbd> + <kbd>cl
 
 ![example gif](./example.gif)
 
+#### Remapping to different keys
+
+This package adds the command `"column_selection"`. If you want to map it to a different mouse command, then you need to add that in your sublime-mousemap like so:
+
+```js
+{
+    "button": "button1",
+    // Remap command to shift+super
+    "modifiers": ["shift", "super"],
+    "press_command": "column_selection"
+}
+```
+
 # License
 
 [MIT](./LICENSE)
