@@ -23,7 +23,7 @@ This package aims to add the VSCcode-like column selection commands to Sublime T
 
 Place one cursors anywhere, and then <kbd>shift</kbd> + <kbd>alt</kbd> + <kbd>click</kbd> where you want the bottom right of the column selection to end. Best explained with a gif:
 
-![example gif][./example.gif]
+![example gif](./example.gif)
 
 # License
 
