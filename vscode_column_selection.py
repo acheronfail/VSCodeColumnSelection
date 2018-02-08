@@ -8,8 +8,24 @@ def clamp(value, low, high):
         return high
     return value
 
+# This is to keep the original anchor as long as we keep making vscode style
+# column selections - otherwise clear it.
+last_selection = None
+
+class ColumnSelectionListener(sublime_plugin.ViewEventListener):
+    def on_text_command(self, name, args):
+        global last_selection
+        if name != "column_selection":
+            last_selection = None
+
 class ColumnSelectionCommand(sublime_plugin.TextCommand):
+    # Return true here in order to get mouse event passed to run.
+    def want_event(self):
+        return True
+
+    # Our actual command.
     def run(self, _edit, event):
+        global last_selection
         # Treat the first selection as the primary selection:
         # Sublime Text has no concept of "primary selections", if you make
         # multiple selections and then press `esc` to go back to one selection,
@@ -22,7 +38,12 @@ class ColumnSelectionCommand(sublime_plugin.TextCommand):
         #   CodeMirror: the last selection made
         #   ACE:        the last selection made
         views_selections = self.view.sel()
-        primary_selection = views_selections[0]
+
+        # We save the last selection to better emulate the behaviour of vscode.
+        if last_selection:
+            primary_selection = last_selection
+        else:
+            last_selection = primary_selection = views_selections[0]
 
         # Use layout coordinates to find the start and end of each selection on
         # each line. It's easier just to use `row`s and `col`s, but that won't
@@ -32,14 +53,15 @@ class ColumnSelectionCommand(sublime_plugin.TextCommand):
         (x1, y1) = self.view.text_to_layout(primary_selection.a)
         (x2, y2) = self.view.window_to_layout((event.get('x'), event.get('y')))
         start_row = self.view.rowcol(primary_selection.a)[0]
-        click_row = self.view.rowcol(self.view.layout_to_text((x2, y2)))[0]
+        click_point = self.view.layout_to_text((x2, y2))
+        click_row = self.view.rowcol(click_point)[0]
 
         # Check if we should put a selection of every line.
         all_empty = True
         skipped_lines = []
 
-        # Threshold for ignoring selections - used to allow for the effects that
-        # non-monospaced characters have on lines.
+        # Threshold for ignoring selections - used to allow for the slightly off
+        # measurements that are present when there are non-monospaced characters.
         threshold = self.view.em_width() / 2
 
         # Iterate through lines (from top to bottom) and create selection regions.
@@ -84,7 +106,3 @@ class ColumnSelectionCommand(sublime_plugin.TextCommand):
         if len(selections):
             views_selections.clear()
             views_selections.add_all(selections)
-
-    # Return true here in order to get mouse event passed to run
-    def want_event(self):
-        return True
