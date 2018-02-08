@@ -40,7 +40,7 @@ class ColumnSelectionCommand(sublime_plugin.TextCommand):
         views_selections = self.view.sel()
 
         # We save the last selection to better emulate the behaviour of vscode.
-        if last_selection:
+        if last_selection is not None:
             primary_selection = last_selection
         else:
             last_selection = primary_selection = views_selections[0]
@@ -60,9 +60,9 @@ class ColumnSelectionCommand(sublime_plugin.TextCommand):
         all_empty = True
         skipped_lines = []
 
-        # Threshold for ignoring selections - used to allow for the slightly off
+        # limit for ignoring selections - used to allow for the slightly off
         # measurements that are present when there are non-monospaced characters.
-        threshold = self.view.em_width() / 2
+        limit = self.view.em_width() / 2
 
         # Iterate through lines (from top to bottom) and create selection regions.
         selections = []
@@ -83,10 +83,8 @@ class ColumnSelectionCommand(sublime_plugin.TextCommand):
             region = sublime.Region(a, b)
 
             # Skip lines that don't reach inside the column selection.
-            if x1 < x2 and self.view.text_to_layout(a)[0] < x1 - threshold:
-                skipped_lines.append(region)
-                continue
-            elif x1 > x2 and self.view.text_to_layout(a)[0] < x2 - threshold:
+            point = self.view.text_to_layout(a)[0]
+            if x1 < x2 and point < x1 - limit or x1 > x2 and point < x2 - limit:
                 skipped_lines.append(region)
                 continue
 
