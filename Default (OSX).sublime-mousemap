@@ -1,7 +1,7 @@
 [
   {
       "button": "button1",
-      "modifiers": ["shift", "option"],
+      "modifiers": ["shift", "alt"],
       "press_command": "column_selection"
   }
 ]
