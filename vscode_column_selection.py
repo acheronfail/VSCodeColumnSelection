@@ -12,8 +12,14 @@ def clamp(value, low, high):
 # column selections - otherwise clear it.
 last_selection = None
 
-class ColumnSelectionListener(sublime_plugin.ViewEventListener):
-    def on_text_command(self, name, args):
+# Use an EventListener rather than a ViewEventListener because Sublime Text
+# builds below 3155 don't fire the ViewEventListener.on_text_command method.
+class ColumnSelectionListener(sublime_plugin.EventListener):
+    def on_deactivated(self, view):
+        global last_selection
+        last_selection = None
+
+    def on_text_command(self, view, name, args):
         global last_selection
         if name != "column_selection":
             last_selection = None
