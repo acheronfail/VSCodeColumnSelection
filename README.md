@@ -6,7 +6,7 @@ Adds a column selection command to Sublime Text similar to VSCode's <kbd>shift</
 
 #### Automatic
 
-[Hopefully soon](https://github.com/wbond/package_control_channel/pull/6915): Via Package Control.
+Via Package Control. Search for `VSCodeColumnSelection`.
 
 #### Manual
 
