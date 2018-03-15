@@ -1,0 +1,7 @@
+
+VSColdColumnSelection 1.0.4
+===========================
+
+This update includes:
+
+* a fix for earlier builds of Sublime Text (below 3155) where the ViewEventListener API was reduced
