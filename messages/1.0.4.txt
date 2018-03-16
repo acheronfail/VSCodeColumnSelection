@@ -1,5 +1,5 @@
 
-VSColdColumnSelection 1.0.4
+VSCodeColumnSelection 1.0.4
 ===========================
 
 This update includes:

@@ -1,18 +1,23 @@
- __      _______  _____          _                                              
- \ \    / / ____|/ ____|        | |                                             
-  \ \  / / (___ | |     ___   __| | ___                                         
-   \ \/ / \___ \| |    / _ \ / _` |/ _ \                                        
-    \  /  ____) | |___| (_) | (_| |  __/                                        
-   __\/_ |_____/ \_____\___/ \__,_|\___|____      _           _   _             
-  / ____|    | |                      / ____|    | |         | | (_)            
- | |     ___ | |_   _ _ __ ___  _ __ | (___   ___| | ___  ___| |_ _  ___  _ __  
- | |    / _ \| | | | | '_ ` _ \| '_ \ \___ \ / _ \ |/ _ \/ __| __| |/ _ \| '_ \ 
- | |___| (_) | | |_| | | | | | | | | |____) |  __/ |  __/ (__| |_| | (_) | | | |
-  \_____\___/|_|\__,_|_| |_| |_|_| |_|_____/ \___|_|\___|\___|\__|_|\___/|_| |_|                                                                                
-                                                                                
+ __      _______  _____          _
+ \ \    / / ____|/ ____|        | |
+  \ \  / / (___ | |     ___   __| | ___
+   \ \/ / \___ \| |    / _ \ / _` |/ _ \
+    \  /  ____) | |___| (_) | (_| |  __/
+   __\/_ |_____/ \_____\___/ \__,_|\___|
+  / ____|    | |
+ | |     ___ | |_   _ _ __ ___  _ __
+ | |    / _ \| | | | | '_ ` _ \| '_ \
+ | |___| (_) | | |_| | | | | | | | | |
+  \_____\___/|_|\__,_|_| |_| |_|_| |_|
+   / ____|    | |         | | (_)
+  | (___   ___| | ___  ___| |_ _  ___  _ __
+   \___ \ / _ \ |/ _ \/ __| __| |/ _ \| '_ \
+  |____) |  __/ |  __/ (__| |_| | (_) | | | |
+  |_____/ \___|_|\___|\___|\__|_|\___/|_| |_|
 
-This package adds a column selection command to Sublime Text similar to VSCode's.
-Place a cursor anywhere, and then `shift` + `alt` + `click` where you want the bottom right of the column selection to end.
+This package adds a column selection command similar to VSCode's.
+Place a cursor anywhere, and then `shift` + `alt` + `click` where you want the
+bottom right of the column selection to end.
 
 Visit https://github.com/acheronfail/VSCodeColumnSelection for more information.
 
