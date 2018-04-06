@@ -38,6 +38,11 @@ This package adds the command `"column_selection"`. If you want to map it to a d
 }
 ```
 
+### Known Issues
+
+* Doesn't work with wrapped lines
+	- Unfortunately, due to a limitation with Sublime's API this isn't feasible to implement at the moment. See the [topic in forum.sublimetext](https://forum.sublimetext.com/t/how-to-find-wrapped-line-lengths/36045)
+
 # License
 
 [MIT](./LICENSE)
